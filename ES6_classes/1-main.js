@@ -1,3 +1,8 @@
-import initializeRooms from './1-make_classrooms.js';
+/*eslint-disable*/
+import ClassRoom from './0-classroom';
 
-console.log(initializeRooms());
+const initializeRooms = () => {
+    const arr = [19, 20, 34];
+    return arr.map((n) => new ClassRoom(n));
+}
+export default initializeRooms;
