@@ -1,6 +1,6 @@
 /*eslint-disable*/
 export default function updateUniqItems(uniqItems) {
-    if ((!uniqItems instanceof Map)){
+    if (!(uniqItems instanceof Map)){
         throw new Error('Cannot process');
     }
     uniqItems.forEach((value, key) => {
