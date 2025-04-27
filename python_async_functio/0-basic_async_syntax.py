@@ -1,13 +1,21 @@
 #!/usr/bin/env python3
-"""This module contains an asynchronous generator."""
+"""This module contains the wait_random function."""
 
 import asyncio
 import random
-from typing import Generator
 
 
-async def async_generator() -> Generator[float, None, None]:
-    """Yield a random number between 0 and 10 after waiting 1 second."""
-    for _ in range(10):
-        await asyncio.sleep(1)
-        yield random.uniform(0, 10)
+async def wait_random(max_delay: int = 10) -> float:
+    """
+    This function waits for a random delay between 0 and
+    max_delay (included) seconds.
+    """
+
+    # Generate a random delay between 0 and max_delay
+    delay = random.uniform(0, max_delay)
+
+    # Wait for the delay
+    await asyncio.sleep(delay)
+
+    # Return the actual delay
+    return delay

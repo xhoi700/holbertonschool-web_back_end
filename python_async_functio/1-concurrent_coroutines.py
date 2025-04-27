@@ -1,13 +1,22 @@
 #!/usr/bin/env python3
-"""Async comprehension"""
+"""This module contains the wait_random function."""
 
+import asyncio
 from typing import List
 
+wait_random = __import__("0-basic_async_syntax").wait_random
 
-async_generator = __import__("0-async_generator").async_generator
 
+async def wait_n(n: int, max_delay: int) -> List[float]:
+    """Spawn wait_random n times with the specified max_delay."""
+    tasks = []
+    for _ in range(n):
+        task = asyncio.create_task(wait_random(max_delay))
+        tasks.append(task)
 
-async def async_comprehension() -> List[float]:
-    """Collect 10 random numbers using an async comprehensing"""
-    result = [i async for i in async_generator()]
-    return result
+    delays = []
+    for task in tasks:
+        delay = await task
+        delays.append(delay)
+
+    return sorted(delays)
