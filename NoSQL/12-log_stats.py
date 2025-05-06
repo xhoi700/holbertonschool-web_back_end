@@ -10,7 +10,7 @@ method = ["GET", "POST", "PUT", "PATCH", "DELETE"]
 
 def nginx_logs_stats(mongo_collection):
     """
-    script that provides some stats about Nginx logs stored in MongoDB
+    script that provides stats about Nginx logs stored in MongoDB
     """
     total_logs = mongo_collection.count_documents({})
     print(f"{total_logs} logs")
@@ -19,8 +19,8 @@ def nginx_logs_stats(mongo_collection):
         method_count = mongo_collection.count_documents({"method": x})
         print(f"\tmethod {x.upper()}: {method_count}")
     status_check = mongo_collection.count_documents(
-            {"method": "GET", "path": "/status"}
-            )
+        {"method": "GET", "path": "/status"}
+    )
     print(f"{status_check} status check")
 
 
